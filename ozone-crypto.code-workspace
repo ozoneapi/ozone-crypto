@@ -1,0 +1,17 @@
+{
+	"folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../monorepo"
+    },
+    {
+      "path": "../khvafar"
+    },
+    {
+      "path": "../agents"
+    }
+  ],
+  "settings": {}
+}

@@ -1,0 +1,46 @@
+{
+  "name": "@ozoneapi/ozone-tools",
+  "version": "1.0.0",
+  "description": "Open Finance tools for JWT and certificate utilities",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "OzoneAPI",
+  "type": "commonjs",
+  "engines": {
+    "node": ">= 18.0.0"
+  },
+  "files": [
+    "**/*"
+  ],
+  "scripts": {
+    "lint": "yarn eslint .",
+    "lint:fix": "yarn eslint . --fix",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo node_modules",
+    "compile": "tsc --project ./tsconfig.json",
+    "ts": "cd ${OZONE_HOME}/khvafar && yarn run ts-node --project ./tsconfig.json",
+    "build": "yarn clean && yarn install && yarn run compile",
+    "pub": "yarn build && yarn publish --prerelease",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "ts-node": "~10.9.2",
+    "yargs": "~17.7.2",
+    "jose": "~4.15.5"
+  },
+  "devDependencies": {
+    "@types/node": "~24.0.2",
+    "@types/yargs": "~17.0.32",
+    "typescript": "~5.8.2",
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.4"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "resolutions": {
+  }
+}
+

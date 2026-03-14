@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true,
+  },
+  "compilerOptions": {
+    "composite": true,
+    "checkJs": true,
+    "resolveJsonModule": true,
+    "preserveConstEnums": true,
+    "esModuleInterop": true,
+    "lib": ["es2020", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2020",
+    "types": ["node", "jest"],
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "sourceRoot": "./src",
+    "sourceMap": true,
+
+    "declaration": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.yaml",
+    "src/**/*.json"
+   ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tmp",
+    "**/*.spec.ts",
+    "**/swagger",
+    "src/ui/static",
+    "src/**/*.unittest.current.ts"
+  ],
+  "references": []
+}
