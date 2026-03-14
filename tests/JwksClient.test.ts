@@ -18,7 +18,7 @@ if (!ENCRYPTION_KID) throw new Error('ENCRYPTION_KID environment variable is req
 
 describe('JwksClient', () => {
 
-  describe('getJwksByUseAndKid — happy path', () => {
+  describe('getJwksByUseAndKid', () => {
     it('fetches a signing key (use=sig) from JWKS URL', async () => {
       const jwk = await JwksClient.getJwksByUseAndKid(JWKS_URL, 'sig');
       expect(jwk).toBeDefined();
