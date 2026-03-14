@@ -1,0 +1,5 @@
+{
+  "workflowPath": "agent-workflow",
+  "constitution": ".github/copilot-constitution.mdc",
+  "instructions": ".github/copilot-instructions.md"
+}
