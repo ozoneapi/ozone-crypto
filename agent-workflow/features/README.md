@@ -13,7 +13,7 @@ Individual feature specifications derived from `ozone-crypto` components.
 | JWKS Client | [feature-jwks-client.md](./feature-jwks-client.md) | `JwksClient` |
 | Nested JWT Patterns | [feature-nested-jwt.md](./feature-nested-jwt.md) | Composition |
 | Certificate Utilities | [feature-cert-utils.md](./feature-cert-utils.md) | `cert-utils/*.sh` |
-| S3 JWKS Manager | [feature-jwks-manager.md](./feature-jwks-manager.md) | `s3-jwks/JwksManager` |
+| S3 JWKS Manager | [feature-jwks-manager.md](./feature-jwks-manager.md) | `utils/s3-jwks/JwksManager` |
 
 ## Structure
 
