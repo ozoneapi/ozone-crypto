@@ -1,11 +1,10 @@
-# Copilot Instructions for [PROJECT_NAME]
+# Copilot Instructions for ozone-crypto
 
 ## Project Overview
 
-[Provide a concise project overview that helps agents understand the context. This should align with your overview.md but be more focused on what agents need to know for code generation and assistance.]
+This document provides high-level guidance for AI-assisted contributions to the `ozone-crypto` repository. It should be read together with the main `README.md` and any architecture or overview documents in the repo. When in doubt, agents must prefer the repository’s own source files and documentation over assumptions.
 
-Example:
-> The [PROJECT_NAME] is a TypeScript library for managing user authentication and authorization. It provides JWT-based authentication, OAuth integration, role-based access control, and session management for web applications.
+The goal is to help agents navigate the project structure, respect existing conventions, and avoid inventing functionality, commands, or APIs that are not already present in the codebase or documented plans.
 
 ## Agent Workflow
 
@@ -32,21 +31,14 @@ When working on this project, follow these stages:
 
 ### Build & Run
 
-[Provide commands for common development tasks]
+For build, test, and run commands, agents must rely on the repository’s existing documentation and configuration rather than assuming a specific toolchain.
 
-Example:
-```bash
-# Install dependencies
-yarn install
+- Check `README.md` (and any `CONTRIBUTING.md` or `docs/` files) for documented commands.
+- Inspect project configuration files (for example, `package.json`, `Cargo.toml`, `Makefile`, or CI workflows under `.github/workflows/`) to discover the actual scripts and tasks in use.
+- When you need to reference a command, prefer an existing script or target defined in the repository over inventing new ones.
+- If no clear command exists for a task, describe the steps in natural language and flag it for a human maintainer to define the appropriate command or script.
 
-# Build the project
-yarn build
-
-# Run in development mode
-yarn dev
-
-# Run tests
-yarn test
+Agents should not hard-code `yarn`, `npm`, `cargo`, or other tooling commands unless they are already present and used consistently within this repository.
 
 # Lint code
 yarn lint
