@@ -40,6 +40,7 @@ For build, test, and run commands, agents must rely on the repository’s existi
 
 Agents should not hard-code `yarn`, `npm`, `cargo`, or other tooling commands unless they are already present and used consistently within this repository.
 
+```bash
 # Lint code
 yarn lint
 
