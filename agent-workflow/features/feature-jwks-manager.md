@@ -63,7 +63,7 @@ CLI utility and TypeScript library for generating RSA key pairs (signing and enc
 
 ## Technical Notes
 
-- CLI entry point: `src/utils/s3-jwks/cli.ts`, run via `yarn jwks <command>`.
+- CLI entry point: `src/utils/s3-jwks/Cli.ts`, run via `yarn jwks <command>`.
 - Core logic: `src/utils/s3-jwks/JwksManager.ts`.
 - S3 wrapper: `src/utils/s3-jwks/S3Client.ts`.
 - Key generation uses `jose.generateKeyPair()` then exports to PEM via `crypto.KeyObject.export()`.
