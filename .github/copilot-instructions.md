@@ -40,6 +40,7 @@ For build, test, and run commands, agents must rely on the repository’s existi
 
 Agents should not hard-code `yarn`, `npm`, `cargo`, or other tooling commands unless they are already present and used consistently within this repository.
 
+```bash
 # Lint code
 yarn lint
 
@@ -49,15 +50,14 @@ yarn format
 
 ### Testing
 
-[Describe testing approach and requirements]
+Testing is mandatory for all changes. Follow these requirements unless the repository’s own documentation explicitly states otherwise:
 
-Example:
-- All new features MUST include tests
-- Tests MUST cover happy path and error cases
-- Run `yarn test` before submitting changes
-- Maintain or improve code coverage
-- Integration tests in `tests/integration/`
-- Unit tests co-located with source files
+- All new features MUST include automated tests.
+- Tests MUST cover both happy-path behavior and relevant error or edge cases.
+- Run `yarn test` locally before submitting changes or opening a pull request.
+- Do not decrease overall test coverage; aim to maintain or improve it with each change.
+- Place integration tests under `tests/integration/` when they exercise multiple components or external boundaries.
+- Place unit tests alongside the source files they cover when that pattern exists in the codebase; otherwise, follow the existing test directory structure.
 
 ### Code Generation
 

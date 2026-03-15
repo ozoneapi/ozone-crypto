@@ -60,5 +60,5 @@ The S3 JWKS Manager has its own CLI. See [s3-jwks/README.md](../s3-jwks/README.m
 
 ```bash
 # Initialize JWKS material locally for a given tenant and region
-yarn jwks init --tenant dc-uat-01 --region eu-west-2 --out-dir ./temp/dc-uat-01
+yarn jwks init --tenant dc-uat-01 --region eu-west-2 --bucket my-jwks-bucket --out-dir ./temp/dc-uat-01
 ```

@@ -61,7 +61,7 @@ See [cert-utils/README.md](cert-utils/README.md) for full documentation.
 CLI for generating JWK key pairs and managing JWKS for S3 publishing (currently only the `init` command is implemented).
 
 ```bash
-yarn jwks init --tenant dc-uat-01 --region eu-west-1
+yarn jwks init --tenant dc-uat-01 --bucket my-jwks-bucket --out-dir temp/dc-uat-01/jwks --region eu-west-1
 ```
 
 See [src/utils/s3-jwks/README.md](src/utils/s3-jwks/README.md) for full documentation.
