@@ -1,0 +1,41 @@
+---
+description: Constitutional governance reference for ozone-crypto. See agent-workflow/overview/constitution.md for the full constitution.
+---
+
+# ozone-crypto Constitution Reference
+
+This file serves as a reference pointer for AI coding assistants (GitHub Copilot, Claude, etc.).
+
+## Full Constitution Location
+
+The complete project constitution is located at:
+- **Path**: `agent-workflow/overview/constitution.md`
+- **Purpose**: Defines project-specific governance, architectural principles, and quality standards
+
+## Inheritance Model
+
+The project constitution inherits from and references:
+- **Ozone Agents Constitution**: `/usr/o3/agents/constitution.mdc`
+- **Constitutional Rules**: `/usr/o3/agents/rules/constitution/`
+  - Generation Guidelines: `/usr/o3/agents/rules/constitution/0-generation-guidelines.mdc`
+  - Plan Execution: `/usr/o3/agents/rules/constitution/follow-plan-strictly.mdc`
+- **Ozone Agents Repository**: https://github.com/ozone-api/agents
+
+## Required Reading
+
+Agents working on this project *MUST* review:
+1. This project's constitution: `agent-workflow/overview/constitution.md`
+2. The shared Ozone Agents constitution: `/usr/o3/agents/constitution.mdc`
+3. Applicable shared rules in: `/usr/o3/agents/rules/`
+
+## Quick Reference
+
+For quick access to key governance elements:
+- **Workflow stages**: See `agent-workflow/overview/constitution.md` and `/usr/o3/agents/workflow/`
+- **Quality standards**: See `agent-workflow/overview/constitution.md`
+- **Architectural principles**: See `agent-workflow/overview/constitution.md`
+- **Shared rules**: See `/usr/o3/agents/rules/`
+
+---
+
+*Note: This is a reference file only. Do not edit governance here. Edit `agent-workflow/overview/constitution.md` instead.*
