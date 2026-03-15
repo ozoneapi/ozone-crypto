@@ -25,7 +25,7 @@ CLI utility and TypeScript library for generating RSA key pairs (signing and enc
 6. Builds a `jwks.json` containing only public JWKs.
 7. Publishes `jwks.json` to S3 at the specified bucket/key.
 8. Rejects if the manifest already exists (prevents accidental reinitialisation).
-9. Each key has a unique `kid` (base64url-encoded random bytes).
+9. Each key has a unique `kid` deterministically derived from its public JWK (SHA-256 hash, base64url-encoded).
 10. JWK entries include `kid`, `use`, `alg`, `kty`, `n`, `e`.
 
 ### publish
