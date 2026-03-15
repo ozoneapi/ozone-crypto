@@ -181,6 +181,13 @@ append_ca_to_pem() {
 main() {
   parse_args "$@"
 
+  # Ensure the output directory for the PEM file exists
+  local pem_dir
+  pem_dir="$(dirname "${PEM}")"
+  if [[ -n "${pem_dir}" ]]; then
+    mkdir -p "${pem_dir}"
+  fi
+
   if [[ -f "${PEM}" ]]; then
     log "PEM file already exists — skipping: ${PEM}"
     exit 0
