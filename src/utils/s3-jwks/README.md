@@ -18,52 +18,17 @@ yarn install
 
 ## Usage
 
-All commands require `--bucket`, `--key`, and `--key-dir`:
+All commands require `--bucket`, `--tenant`, `--region` and `--out-dir`:
 
 ```bash
 # Initialise a new JWKS (generates sig + enc key pairs, publishes to S3)
-yarn ts src/s3-jwks/cli.ts init \
+yarn run jwks init \
   --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --key-dir ./temp/dc-uat-01 \
-  --alg PS256 \
+  --tenant dc-uat-01.jwks \
+  --region eu-west-2 \
+  --out-dir ./temp/dc-uat-01 \
   --key-size 2048
 
-# List local keys
-yarn ts src/s3-jwks/cli.ts list \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --key-dir ./temp/dc-uat-01
-
-# Add a new signing key
-yarn ts src/s3-jwks/cli.ts add-key \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --key-dir ./temp/dc-uat-01 \
-  --key-use sig \
-  --alg PS256
-
-# Add a new encryption key
-yarn ts src/s3-jwks/cli.ts add-key \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --key-dir ./temp/dc-uat-01 \
-  --key-use enc
-
-# Remove a key by kid
-yarn ts src/s3-jwks/cli.ts remove-key \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --key-dir ./temp/dc-uat-01 \
-  --kid "ozPOzyXOh6ibr7X5C898lZJdjnEWv5uF9az6eXBRcKI"
-
-# Republish local JWKS to S3 (force overwrite)
-yarn ts src/s3-jwks/cli.ts publish \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --key-dir ./temp/dc-uat-01 \
-  --force
-```
 
 ## Commands
 
@@ -81,7 +46,7 @@ yarn ts src/s3-jwks/cli.ts publish \
 |---|---|---|---|---|
 | `--bucket` | `-b` | Yes | — | S3 bucket name |
 | `--key` | `-k` | Yes | — | S3 object key for the JWKS file |
-| `--region` | `-r` | No | `eu-west-2` | AWS region |
+| `--region` | `-r` | Yes | — | AWS region |
 | `--key-dir` | `-d` | Yes | — | Local directory for key material |
 | `--kid` | — | No | auto-generated | Key ID |
 | `--alg` | `-a` | No | `PS256` | Signing algorithm |
@@ -112,14 +77,14 @@ After `init`, the `--key-dir` will contain:
 After `init`, generate a `key-material.env` from the manifest:
 
 ```bash
-export JWKS_URL=https://<bucket>.s3.<region>.amazonaws.com/<key>
+export JWKS_URL=https://s3.<region>.amazonaws.com/<bucket>/<tenant>
 export SIGNING_KID=<sig-kid>
-export SIGNING_PRIVATE_KEY_PEM=<key-dir>/<kid>-sig-key.key
-export SIGNING_PUBLIC_KEY_PEM=<key-dir>/<kid>-sig-key.pub
-export SIGNING_JWK=<key-dir>/<kid>-sig-key.jwk.json
+export SIGNING_PRIVATE_KEY_PEM=<out-dir>/<kid>-sig-key.key
+export SIGNING_PUBLIC_KEY_PEM=<out-dir>/<kid>-sig-key.pub
+export SIGNING_JWK=<out-dir>/<kid>-sig-key.jwk.json
 export ENCRYPTION_KID=<enc-kid>
-export ENCRYPTION_PRIVATE_KEY_PEM=<key-dir>/<kid>-enc-key.key
-export ENCRYPTION_PUBLIC_KEY_PEM=<key-dir>/<kid>-enc-key.pub
-export ENCRYPTION_PUBLIC_JWK=<key-dir>/<kid>-enc-pub-key.jwk.json
-export ENCRYPTION_PRIVATE_JWK=<key-dir>/<kid>-enc-key.jwk.json
+export ENCRYPTION_PRIVATE_KEY_PEM=<out-dir>/<kid>-enc-key.key
+export ENCRYPTION_PUBLIC_KEY_PEM=<out-dir>/<kid>-enc-key.pub
+export ENCRYPTION_PUBLIC_JWK=<out-dir>/<kid>-enc-pub-key.jwk.json
+export ENCRYPTION_PRIVATE_JWK=<out-dir>/<kid>-enc-key.jwk.json
 ```

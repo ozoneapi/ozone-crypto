@@ -18,7 +18,7 @@ yarn install
 
 ## CLI Usage
 
-All commands require `--bucket`, `--key`, and `--out-dir`:
+All commands require `--bucket`, `--tenant`, `--region` and `--out-dir`:
 
 ### Initialise a new JWKS
 
@@ -27,82 +27,28 @@ Generates a signing key pair (PS256) and an encryption key pair (RSA-OAEP), writ
 ```bash
 yarn jwks init \
   --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
+  --tenant dc-uat-01.jwks \
+  --region eu-west-2 \
   --out-dir ./temp/dc-uat-01 \
-  --alg PS256 \
   --key-size 2048
 ```
 
-### List local keys
-
-```bash
-yarn jwks list \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --out-dir ./temp/dc-uat-01
-```
-
-### Add a new key
-
-```bash
-# Add a signing key
-yarn jwks add-key \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --out-dir ./temp/dc-uat-01 \
-  --key-use sig --alg PS256
-
-# Add an encryption key
-yarn jwks add-key \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --out-dir ./temp/dc-uat-01 \
-  --key-use enc
-```
-
-### Remove a key
-
-```bash
-yarn jwks remove-key \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --out-dir ./temp/dc-uat-01 \
-  --kid "ozPOzyXOh6ibr7X5C898lZJdjnEWv5uF9az6eXBRcKI"
-```
-
-### Republish to S3
-
-```bash
-yarn jwks publish \
-  --bucket jwks.ozoneapi.io \
-  --key dc-uat-01.jwks \
-  --out-dir ./temp/dc-uat-01 \
-  --force
-```
 
 ## Commands
 
 | Command | Description |
 |---|---|
 | `init` | Generate signing + encryption key pairs, create JWKS, publish to S3 |
-| `publish` | Publish local JWKS to S3 (use `--force` to overwrite) |
-| `add-key` | Generate a new key pair, add to local JWKS, publish |
-| `remove-key` | Remove a key by `--kid`, delete local files, republish |
-| `list` | List all keys in the local manifest |
 
 ## CLI Options
 
 | Option | Alias | Required | Default | Description |
 |---|---|---|---|---|
 | `--bucket` | `-b` | Yes | — | S3 bucket name |
-| `--key` | `-k` | Yes | — | S3 object key for the JWKS file |
-| `--region` | `-r` | No | `eu-west-2` | AWS region |
+| `--tenant` | `-t` | Yes | — | S3 object key for the JWKS file |
+| `--region` | `-r` | Yes | — | AWS region |
 | `--out-dir` | `-d` | Yes | — | Local directory for key material |
-| `--kid` | — | No | auto-generated | Key ID |
-| `--alg` | `-a` | No | `PS256` | Signing algorithm |
 | `--key-size` | — | No | `2048` | RSA key size in bits |
-| `--key-use` | `-u` | No | `sig` | Key use: `sig` or `enc` |
-| `--force` | — | No | `false` | Force overwrite on S3 |
 
 ## Generated Files
 
@@ -127,7 +73,7 @@ After `init`, the `--out-dir` contains:
 After `init`, create a `key-material.env` for use with examples and tests:
 
 ```bash
-export JWKS_URL=https://<bucket>.s3.<region>.amazonaws.com/<key>
+export JWKS_URL=https://s3.<region>.amazonaws.com/<bucket>/<tenant>
 export SIGNING_KID=<sig-kid>
 export SIGNING_PRIVATE_KEY_PEM=<out-dir>/<kid>-sig-key.key
 export SIGNING_PUBLIC_KEY_PEM=<out-dir>/<kid>-sig-key.pub
@@ -138,7 +84,6 @@ export ENCRYPTION_PUBLIC_KEY_PEM=<out-dir>/<kid>-enc-key.pub
 export ENCRYPTION_PUBLIC_JWK=<out-dir>/<kid>-enc-pub-key.jwk.json
 export ENCRYPTION_PRIVATE_JWK=<out-dir>/<kid>-enc-key.jwk.json
 ```
-
 
 ## Architecture
 
