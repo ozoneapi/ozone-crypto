@@ -68,4 +68,4 @@ CLI utility and TypeScript library for generating RSA key pairs (signing and enc
 - S3 wrapper: `src/utils/s3-jwks/S3Client.ts`.
 - Key generation uses `jose.generateKeyPair()` then exports to PEM via `crypto.KeyObject.export()`.
 - Manifest persists full `TKeyPair` objects (including private key material); JWKS is rebuilt from the manifest on every publish.
-- File naming convention: `<safe-kid>-<use>-key.<ext>` where `safe-kid` is the kid with non-alphanumeric chars replaced by `_`.
+- File naming convention: `<kid>-<use>-key.<ext>` where `kid` is the deterministically derived SHA-256, base64url-encoded key ID.
