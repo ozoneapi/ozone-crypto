@@ -115,6 +115,16 @@ generate_csr() {
   log "Generating CSR: ${csr_file}"
   log "Subject: ${subject}"
 
+  # Ensure the parent directory for the CSR file exists
+  local csr_dir
+  csr_dir="$(dirname -- "${csr_file}")"
+  if [[ -n "${csr_dir}" ]]; then
+    if ! mkdir -p "${csr_dir}"; then
+      err "Failed to create directory for CSR: ${csr_dir}"
+      exit 1
+    fi
+  fi
+
   openssl req -new \
     -key "${key_file}" \
     -out "${csr_file}" \
