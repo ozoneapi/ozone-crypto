@@ -70,9 +70,7 @@ When generating code:
 
 ## Code Conventions
 
-[Define project-specific code conventions]
-
-Example:
+The following conventions describe how to structure and style code in this repository. When in doubt, mirror the patterns used in existing source and test files.
 
 ### TypeScript Style
 - Use strict TypeScript configuration
