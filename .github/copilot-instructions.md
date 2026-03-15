@@ -43,10 +43,9 @@ Agents should not hard-code `yarn`, `npm`, `cargo`, or other tooling commands un
 ```bash
 # Lint code
 yarn lint
-
-# Format code
-yarn format
 ```
+
+For code formatting, use whichever command or script is actually defined in this repository (for example, a format-related script in `package.json` or another build tool). If no dedicated format command exists, describe the formatting requirements in natural language and defer to a human maintainer to define the appropriate workflow.
 
 ### Testing
 
