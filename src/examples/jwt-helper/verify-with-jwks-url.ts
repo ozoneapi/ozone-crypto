@@ -1,22 +1,17 @@
-import { JwtHelper } from '../lib/JwtHelper';
-import fs from 'fs';
+import { JwtHelper } from '../../lib/JwtHelper';
 
 /**
- * Example: Verify JWT with public key as string
+ * Example: Verify a JWT using a JWKS URL
  * 
  * Required environment variables:
- * - SIGNING_PUBLIC_KEY_PEM: Full file path to the public key PEM file
+ * - JWKS_URL: URL to the JWKS endpoint
  */
 
 async function main() {
-  const publicKeyPath = process.env.SIGNING_PUBLIC_KEY_PEM;
+  const jwksUrl = process.env.JWKS_URL;
   
-  if (!publicKeyPath) {
-    throw new Error('SIGNING_PUBLIC_KEY_PEM environment variable is required');
-  }
-
-  if (!fs.existsSync(publicKeyPath)) {
-    throw new Error(`Public key file not found: ${publicKeyPath}`);
+  if (!jwksUrl) {
+    throw new Error('JWKS_URL environment variable is required');
   }
 
   const sampleJwt = process.argv[2];
@@ -24,19 +19,18 @@ async function main() {
     throw new Error('Please provide a JWT as the first argument');
   }
 
-  const publicKeyContent = fs.readFileSync(publicKeyPath, 'utf-8');
-
   const result = await JwtHelper.verify(sampleJwt, {
     keyMaterial: {
       algType: 'asymmetric',
       alg: 'PS256',
       asymmetricSigningKey: {
-        signingKey: publicKeyContent
+        jwksUrl: jwksUrl
       }
     },
     parseBody: true,
     verifyFutureExp: true,
-    verifyPastIat: true
+    verifyPastIat: true,
+    verifyPastNbf: true
   });
 
   console.log('JWT Verification Successful!');

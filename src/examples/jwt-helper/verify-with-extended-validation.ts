@@ -1,4 +1,4 @@
-import { JwtHelper } from '../lib/JwtHelper';
+import { JwtHelper } from '../../lib/JwtHelper';
 import fs from 'fs';
 
 /**

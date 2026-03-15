@@ -63,7 +63,7 @@ export const KeyOps = ['encrypt' , 'decrypt' , 'sign' , 'verify'] as const;
 export type TKeyOps = typeof KeyOps[number];
 
 export type TJwkPublicKey = {
-  alg?: TSigningAlgorithms,
+  alg?: TSigningAlgorithms | TKeyManagementAlgorithms,
   kty: string,
   kid?: string,
   use?: string,

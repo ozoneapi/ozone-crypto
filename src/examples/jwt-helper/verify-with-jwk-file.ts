@@ -1,22 +1,22 @@
-import { JwtHelper } from '../lib/JwtHelper';
+import { JwtHelper } from '../../lib/JwtHelper';
 import fs from 'fs';
 
 /**
- * Example: Verify a JWT using a public key from PEM file
+ * Example: Verify a JWT using a JWK from file
  * 
  * Required environment variables:
- * - SIGNING_PUBLIC_KEY_PEM: Full file path to the public key PEM file
+ * - SIGNING_JWK: Full file path to the JWK JSON file (public key)
  */
 
 async function main() {
-  const publicKeyPath = process.env.SIGNING_PUBLIC_KEY_PEM;
+  const jwkPath = process.env.SIGNING_JWK;
   
-  if (!publicKeyPath) {
-    throw new Error('SIGNING_PUBLIC_KEY_PEM environment variable is required');
+  if (!jwkPath) {
+    throw new Error('SIGNING_JWK environment variable is required');
   }
 
-  if (!fs.existsSync(publicKeyPath)) {
-    throw new Error(`Public key file not found: ${publicKeyPath}`);
+  if (!fs.existsSync(jwkPath)) {
+    throw new Error(`JWK file not found: ${jwkPath}`);
   }
 
   const sampleJwt = process.argv[2];
@@ -24,12 +24,15 @@ async function main() {
     throw new Error('Please provide a JWT as the first argument');
   }
 
+  const jwkContent = fs.readFileSync(jwkPath, 'utf-8');
+  const jwk = JSON.parse(jwkContent);
+
   const result = await JwtHelper.verify(sampleJwt, {
     keyMaterial: {
       algType: 'asymmetric',
       alg: 'PS256',
       asymmetricSigningKey: {
-        signingKeyFileName: publicKeyPath
+        signingKeyJwk: jwk
       }
     },
     parseBody: true,
