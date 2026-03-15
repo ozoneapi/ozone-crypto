@@ -144,8 +144,7 @@ issue_certificate_without_san() {
     -CAcreateserial \
     -out "${pem}" \
     -days "${DAYS_WITHOUT_SAN}" \
-    -sha256 \
-    -extensions v3_req
+    -sha256
 }
 
 issue_certificate_with_san() {
