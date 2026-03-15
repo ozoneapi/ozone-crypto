@@ -1,4 +1,4 @@
-import { JwtHelper, TEncryptParams, TDecryptParams, TSignParams } from '../lib/JwtHelper';
+import { JwtHelper, TEncryptParams, TDecryptParams, TSignParams } from '../../lib/JwtHelper';
 import fs from 'fs';
 
 const SIGNING_KID = process.env.SIGNING_KID;

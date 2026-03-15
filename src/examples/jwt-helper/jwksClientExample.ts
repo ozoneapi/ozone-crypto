@@ -1,4 +1,4 @@
-import { JwksClient } from '../lib/JwksClient';
+import { JwksClient } from '../../lib/JwksClient';
 
 
 async function main() {
