@@ -21,7 +21,7 @@
     "pub": "yarn build && yarn publish --prerelease",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "jwks": "cd ${OZONE_HOME}/ozone-crypto && yarn run ts-node --project ./tsconfig.json src/utils/s3-jwks/Cli.ts"
+    "jwks": "ts-node --project ./tsconfig.json src/utils/s3-jwks/Cli.ts"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
