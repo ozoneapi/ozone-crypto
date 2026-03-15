@@ -114,12 +114,12 @@ After `init`, the `--out-dir` contains:
 ├── jwks.json                          # Public JWKS (published to S3)
 ├── <kid>-sig-key.key                  # Signing private key (PEM)
 ├── <kid>-sig-key.pub                  # Signing public key (PEM)
-├── <kid>-sig-key.jwk.json             # Signing private key (JWK)
-├── <kid>-sig-pub-key.jwk.json         # Signing public key (JWK)
+├── <kid>-sig-key.private-jwk.json     # Signing private key (JWK)
+├── <kid>-sig-key.public-jwk.json      # Signing public key (JWK)
 ├── <kid>-enc-key.key                  # Encryption private key (PEM)
 ├── <kid>-enc-key.pub                  # Encryption public key (PEM)
-├── <kid>-enc-key.jwk.json             # Encryption private key (JWK)
-└── <kid>-enc-pub-key.jwk.json         # Encryption public key (JWK)
+├── <kid>-enc-key.private-jwk.json     # Encryption private key (JWK)
+└── <kid>-enc-key.public-jwk.json      # Encryption public key (JWK)
 ```
 
 ## Environment Variables
@@ -139,24 +139,6 @@ export ENCRYPTION_PUBLIC_JWK=<out-dir>/<kid>-enc-pub-key.jwk.json
 export ENCRYPTION_PRIVATE_JWK=<out-dir>/<kid>-enc-key.jwk.json
 ```
 
-## Programmatic Usage
-
-```typescript
-import { JwksManager } from './JwksManager';
-
-const manager = new JwksManager({
-  bucket: 'jwks.ozoneapi.io',
-  key: 'dc-uat-01.jwks',
-  region: 'eu-west-2',
-  outDir: './temp/dc-uat-01',
-});
-
-await manager.init({ alg: 'PS256', keySize: 2048, keyUse: 'sig' });
-await manager.list();
-await manager.addKey({ alg: 'PS256', keySize: 2048, keyUse: 'sig' });
-await manager.removeKey({ kid: 'some-kid' });
-await manager.publish({ force: true });
-```
 
 ## Architecture
 
