@@ -114,7 +114,7 @@ ozone-crypto/
 │   │   └── JwksClient.ts             # Remote JWKS key fetching
 │   ├── utils/
 │   │   └── s3-jwks/
-│   │       ├── cli.ts                # JWKS Manager CLI entry point
+│   │       ├── Cli.ts                # JWKS Manager CLI entry point
 │   │       ├── JwksManager.ts        # Key generation + S3 publishing
 │   │       ├── S3Client.ts           # Lightweight S3 wrapper
 │   │       └── README.md
