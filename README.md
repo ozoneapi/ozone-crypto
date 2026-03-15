@@ -56,17 +56,15 @@ bash cert-utils/issue-cert.sh --csr temp/svc.csr --pem temp/svc.pem --ca-pem tem
 
 See [cert-utils/README.md](cert-utils/README.md) for full documentation.
 
-### 4. S3 JWKS Manager (`src/s3-jwks/`)
+### 4. S3 JWKS Manager (`src/utils/s3-jwks/`)
 
-CLI for generating JWK key pairs and publishing JWKS to S3.
+CLI for generating JWK key pairs and managing JWKS for S3 publishing (currently only the `init` command is implemented).
 
 ```bash
-yarn jwks init --bucket jwks.ozoneapi.io --key dc-uat-01.jwks --out-dir ./temp/dc-uat-01
-yarn jwks list --bucket jwks.ozoneapi.io --key dc-uat-01.jwks --out-dir ./temp/dc-uat-01
-yarn jwks publish --bucket jwks.ozoneapi.io --key dc-uat-01.jwks --out-dir ./temp/dc-uat-01 --force
+yarn jwks init --tenant dc-uat-01 --region eu-west-1
 ```
 
-See [src/s3-jwks/README.md](src/s3-jwks/README.md) for full documentation.
+See [src/utils/s3-jwks/README.md](src/utils/s3-jwks/README.md) for full documentation.
 
 ## Environment Variables
 
