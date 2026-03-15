@@ -59,6 +59,6 @@ See [cert-utils/README.md](./cert-utils/README.md) for details.
 The S3 JWKS Manager has its own CLI. See [s3-jwks/README.md](../s3-jwks/README.md).
 
 ```bash
-yarn jwks init --bucket jwks.ozoneapi.io --key dc-uat-01.jwks --out-dir ./temp/dc-uat-01
-yarn jwks list --bucket jwks.ozoneapi.io --key dc-uat-01.jwks --out-dir ./temp/dc-uat-01
+# Initialize JWKS material locally for a given tenant and region
+yarn jwks init --tenant dc-uat-01 --region eu-west-2 --out-dir ./temp/dc-uat-01
 ```
