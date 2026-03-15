@@ -51,7 +51,7 @@ CLI utility and TypeScript library for generating RSA key pairs (signing and enc
 24. Rejects if no manifest exists.
 
 ### CLI
-25. Uses yargs with named parameters (`--bucket`, `--key`, `--out-dir`, etc.).
+25. Uses yargs with named parameters (`--bucket`, `--tenant`, `--out-dir`, etc.).
 26. Supports `--help` / `-h`.
 27. Validates required parameters before executing commands.
 
@@ -63,9 +63,9 @@ CLI utility and TypeScript library for generating RSA key pairs (signing and enc
 
 ## Technical Notes
 
-- CLI entry point: `src/s3-jwks/cli.ts`, run via `yarn jwks <command>`.
-- Core logic: `src/s3-jwks/JwksManager.ts`.
-- S3 wrapper: `src/s3-jwks/S3Client.ts`.
+- CLI entry point: `src/utils/s3-jwks/cli.ts`, run via `yarn jwks <command>`.
+- Core logic: `src/utils/s3-jwks/JwksManager.ts`.
+- S3 wrapper: `src/utils/s3-jwks/S3Client.ts`.
 - Key generation uses `jose.generateKeyPair()` then exports to PEM via `crypto.KeyObject.export()`.
-- Manifest tracks key metadata and file names; JWKS is rebuilt from public JWK files on every publish.
+- Manifest persists full `TKeyPair` objects (including private key material); JWKS is rebuilt from the manifest on every publish.
 - File naming convention: `<safe-kid>-<use>-key.<ext>` where `safe-kid` is the kid with non-alphanumeric chars replaced by `_`.
