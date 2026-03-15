@@ -112,11 +112,14 @@ ozone-crypto/
 │   │   ├── JwtHelper.ts              # JWT sign/verify/encrypt/decrypt
 │   │   ├── JwtTypes.ts               # Type definitions
 │   │   └── JwksClient.ts             # Remote JWKS key fetching
+│   ├── utils/
+│   │   └── s3-jwks/
+│   │       ├── cli.ts                # JWKS Manager CLI entry point
+│   │       ├── JwksManager.ts        # Key generation + S3 publishing
+│   │       ├── S3Client.ts           # Lightweight S3 wrapper
+│   │       └── README.md
 │   ├── s3-jwks/
-│   │   ├── cli.ts                    # JWKS Manager CLI entry point
-│   │   ├── JwksManager.ts            # Key generation + S3 publishing
-│   │   ├── S3Client.ts               # Lightweight S3 wrapper
-│   │   └── README.md
+│   │   └── README.md                 # Documentation entry point
 │   └── examples/
 │       ├── jwt-helper/               # JWT signing/verification/encryption examples
 │       ├── cert-utils/               # Certificate generation examples
